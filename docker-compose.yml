@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  dataBaseMysql:   
+    image: mysql:5.7.29
+    container_name: mysqlDataBase
+    environment:
+      MYSQL_ROOT_PASSWORD: "p@ssw0rd"
+      MYSQL_USER: "iqsistemas"
+      MYSQL_PASSWORD: "p@ssw0rd"
+      MYSQL_DATABASE: "sice"
+    ports:
+      - "8338:3306"
+    expose:
+      - "3306"  
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/mysqlconfig/my.cnf:/etc/mysql/conf.d/my.cnf"
+    networks:
+      - app-network
+
+networks: 
+  app-network:
+    driver: bridge
+    
+volumes:
+  dabaseMysql: 
+    driver: local         
